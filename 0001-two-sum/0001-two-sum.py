@@ -12,21 +12,22 @@ class Solution(object):
         #         if (nums[i] + nums[j]) == target:
         #             return [i, j]
                 
-        # Method 2: 
+        # Method 2: Hash Table
+        # map integer to its index
         num_to_index = {}
 
-    # 遍历数组
+        # iterate over the array 
         for i, num in enumerate(nums):
-            # 计算所需的补数
+            # this is the complement number we need for the two-sum
             complement = target - num
-
-            # 检查补数是否已经在字典中
+            
+            # check if such a complement number existed as a key in our dictionary
             if complement in num_to_index:
-                # 如果在字典中，返回补数的索引和当前数字的索引
+                # if yes, return the current index i and the complement number index
                 return [num_to_index[complement], i]
 
-            # 如果不在字典中，将当前数字和其索引加入字典
+            # if not, put the current number and its index to the dictionary
             num_to_index[num] = i
 
-        # 如果没有找到符合条件的两个数字，返回一个空列表
+        
         return []
