@@ -21,18 +21,15 @@ class Solution(object):
         
 #         return list(res.values()) 
         
-        sorted_str_to_index = defaultdict(list)
-
-        # 填充字典
-        for i, s in enumerate(strs):
-            s_sorted = tuple(sorted(s))  # 使用元组作为键
-            sorted_str_to_index[s_sorted].append(s)  # 直接存储字符串
-
-        # 初始化结果列表
+        str_dict = dict()
         res = []
+        for s in strs:
+            sort_s = str(sorted(s))
+            if sort_s in str_dict:
+                str_dict[sort_s] += [s]
+            else:
+                str_dict[sort_s] = [s]
 
-        # 遍历字典并构建结果
-        for anagrams in sorted_str_to_index.values():
-            res.append(anagrams)
-
+        for sort_s in str_dict:
+            res += [str_dict[sort_s]]
         return res
