@@ -9,6 +9,7 @@ class Solution(object):
         right = len(s) - 1
         
         while left < right:
+            # isalnum() is True if 只包含字母和数字字符
             if not s[left].isalnum():
                 left += 1
                 continue
