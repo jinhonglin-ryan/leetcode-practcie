@@ -21,15 +21,6 @@ class Solution(object):
             right = len(nums) - 1
             
             while left < right:
-                # we want numbers with distinct indices 
-                if left == i:
-                    left += 1
-                    continue 
-                    
-                if right == i:
-                    right -= 1
-                    continue
-                    
                 num_left = sorted_num[left]
                 num_right = sorted_num[right]
                 temp_sum = num_left + num_right + num_i
