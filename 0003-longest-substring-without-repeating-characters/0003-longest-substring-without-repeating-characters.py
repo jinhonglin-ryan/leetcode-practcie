@@ -15,10 +15,12 @@ class Solution(object):
                 substr_count[s[right]] = 1
             else:
                 substr_count[s[right]] += 1
+                
+                while substr_count[s[right]] > 1:
+                    substr_count[s[left]] -= 1
+                    left += 1
             
-            while substr_count[s[right]] > 1:
-                substr_count[s[left]] -= 1
-                left += 1
+            
                 
             max_len = max(max_len, right - left + 1)
             right += 1
