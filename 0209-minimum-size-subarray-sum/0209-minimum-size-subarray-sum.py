@@ -6,27 +6,23 @@ class Solution(object):
         :rtype: int
         """
         
-        """
-        滑动窗口
-        """
-        left = 0 
+        left = 0
         right = 0
+        n = len(nums)
         curr_sum = 0
-        min_len = len(nums) + 1
+        min_len = n + 1
         
-        while right < len(nums):
+        while right < n:
             curr_sum += nums[right]
             
-            # 只要curr_sum >= target, 说明满足题目条件，我们要更新min_len
-            # 然后减去left的值，并且右移left更新窗口
-            # 直到curr_sum < target，我们右移right, 加入一个新的值到窗口中
             while curr_sum >= target:
                 min_len = min(min_len, right - left + 1)
                 curr_sum -= nums[left]
                 left += 1
-            
             right += 1
-            
-        # 如果没有这个array返回0
-        return min_len if min_len != len(nums) + 1 else 0 
+        return min_len if min_len != n + 1 else 0 
+        
+        
+        
+        
             
