@@ -7,29 +7,21 @@ class Solution(object):
         """
         
         
-        window_s1 = {}
-        window_s2 = {}
+        window_s1 = Counter(s1)
+        window_s2 = Counter()
         window_size = len(s1)
         
-        for c in s1:
-            if c not in window_s1:
-                window_s1[c] = 1
-            else:
-                window_s1[c] += 1
         
         left = 0
         right = 0
         
         while right < len(s2):
-            if s2[right] in window_s2:
-                window_s2[s2[right]] += 1
-            else:
-                window_s2[s2[right]] = 1
+            if window_s2 == window_s1:
+                return True
             
-            
-            if right - left + 1 >= window_size:
-                if window_s2 == window_s1:
-                    return True
+            window_s2[s2[right]] += 1
+                   
+            if right - left + 1 > window_size:
                 window_s2[s2[left]] -= 1
                 if window_s2[s2[left]] == 0:
                     del window_s2[s2[left]]
@@ -37,4 +29,6 @@ class Solution(object):
                 
             right += 1
         
+        if window_s2 == window_s1:
+            return True
         return False
