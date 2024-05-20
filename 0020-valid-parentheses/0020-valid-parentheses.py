@@ -8,28 +8,28 @@ class Solution(object):
         if len(s) % 2 != 0:
             return False
         
-        queue = deque()
+        stack = list()
         
         for c in s:
             if c == "(" or c == "{" or c == "[":
-                queue.append(c)
+                stack.append(c)
             elif c == ")":
-                if len(queue) != 0 and queue[-1] == "(":
-                    queue.pop()
+                if len(stack) != 0 and stack[-1] == "(":
+                    stack.pop()
                 else:
                     return False
             elif c == "]":
-                if len(queue) != 0 and queue[-1] == "[":
-                    queue.pop()
+                if len(stack) != 0 and stack[-1] == "[":
+                    stack.pop()
                 else:
                     return False
             elif c == "}":
-                if len(queue) != 0 and queue[-1] == "{":
-                    queue.pop()
+                if len(stack) != 0 and stack[-1] == "{":
+                    stack.pop()
                 else:
                     return False
         
-        if len(queue) != 0:
+        if len(stack) != 0:
             return False
         
         return True
