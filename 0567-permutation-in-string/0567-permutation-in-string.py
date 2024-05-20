@@ -21,7 +21,7 @@ class Solution(object):
             
             window_s2[s2[right]] += 1
                    
-            if right - left + 1 > window_size:
+            if right - left + 1 == window_size + 1:
                 window_s2[s2[left]] -= 1
                 if window_s2[s2[left]] == 0:
                     del window_s2[s2[left]]
