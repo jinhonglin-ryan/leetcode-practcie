@@ -5,20 +5,21 @@ class Solution(object):
         :rtype: List[str]
         """
         
-        parentheses = []            # 存放所有括号组合
-        parenthesis = []            # 存放当前括号组合
+        all_combo = []
+        curr_combo = []
+        
         def backtrack(symbol, index):
-            if n * 2 == index:
+            if 2 * n == index:
                 if symbol == 0:
-                    parentheses.append("".join(parenthesis))
+                    all_combo.append("".join(curr_combo))
             else:
                 if symbol < n:
-                    parenthesis.append('(')
+                    curr_combo.append('(')
                     backtrack(symbol + 1, index + 1)
-                    parenthesis.pop()
-                if symbol > 0:
-                    parenthesis.append(')')
+                    curr_combo.pop()
+                if symbol > 0: 
+                    curr_combo.append(')')
                     backtrack(symbol - 1, index + 1)
-                    parenthesis.pop()
+                    curr_combo.pop()
         backtrack(0, 0)
-        return parentheses
+        return all_combo
