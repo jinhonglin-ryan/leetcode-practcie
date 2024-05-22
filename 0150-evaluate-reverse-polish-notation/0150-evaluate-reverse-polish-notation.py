@@ -20,7 +20,10 @@ class Solution(object):
                     result = num_2 * num_1
                 elif token == '/':
                     # 整数除法要向零截断
-                    result = int(num_2 / num_1) if num_2 * num_1 >= 0 else -(-num_2 // num_1)
+                    if num_2 * num_1 >= 0:
+                        result = int(num_2 / num_1)
+                    else:
+                        result = -(-num_2 / num_1)
 
                 stack.append(result)
             else:
