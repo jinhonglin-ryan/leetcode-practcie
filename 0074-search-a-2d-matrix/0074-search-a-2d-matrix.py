@@ -6,23 +6,48 @@ class Solution(object):
         :rtype: bool
         """
         
-        def binary_search(nums, left, right):
-            if left > right:
-                return False
+        # Method 1: My solution
+        # 一行一行分别binary search 
+#         def binary_search(nums, left, right):
+#             if left > right:
+#                 return False
             
-            mid = (left + right) // 2
+#             mid = (left + right) // 2
             
-            if nums[mid] == target:
-                return True
-            elif nums[mid] > target:
-                return binary_search(nums, left, mid - 1)
-            else:
-                return binary_search(nums, mid + 1, right)
+#             if nums[mid] == target:
+#                 return True
+#             elif nums[mid] > target:
+#                 return binary_search(nums, left, mid - 1)
+#             else:
+#                 return binary_search(nums, mid + 1, right)
         
-        for row in matrix:
-            if binary_search(row, 0, len(row) - 1):
-                return True
+#         for row in matrix:
+#             if binary_search(row, 0, len(row) - 1):
+#                 return True
                 
+#         return False
+        
+        # Method 2: 先使用二分查找确定目标值所在的行，然后在该行内再次使用二分查找确定目标值所在的列
+        left, right = 0, len(matrix) - 1
+        while left <= right:
+            mid = left + (right - left) // 2
+            if matrix[mid][0] <= target <= matrix[mid][-1]:  # target is within the range of this row
+                # Step 2: Binary search within the found row
+                left_2, right_2 = 0, len(matrix[0]) - 1
+                while left_2 <= right_2:
+                    mid_2 = left_2 + (right_2 - left_2) // 2
+                    if matrix[mid][mid_2] == target:
+                        return True
+                    elif matrix[mid][mid_2] < target:
+                        left_2 = mid_2 + 1
+                    else:
+                        right_2 = mid_2 - 1
+                return False
+            elif matrix[mid][0] > target:
+                right = mid - 1
+            else:
+                left = mid + 1
         return False
 
-            
+        
+
