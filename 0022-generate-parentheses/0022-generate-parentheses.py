@@ -5,22 +5,28 @@ class Solution(object):
         :rtype: List[str]
         """
         
-        curr_combo = []
-        all_combo = []
+#         ans = []
+#         def dfs(lc, rc, n, curr):
+#             if lc == 0 and rc == 0:
+#                 ans.append(curr)
+#             else: 
+#                 if lc < n:
+#                     dfs(lc + 1, rc, n, curr + "(")
+#                 if rc < n and lc > rc:
+#                     dfs(lc, rc + 1, n, curr + ")")
         
-        def dfs(symbol, index):
-            if index == 2 * n:
-                if symbol == 0:
-                    all_combo.append("".join(curr_combo))
-            
+#         dfs(0, 0, n, "")
+#         return ans 
+                
+        ans = []
+        
+        def dfs(lc, rc, n, curr_string):
+            if lc == n and rc == n:
+                ans.append(curr_string)
             else:
-                if symbol < n:
-                    curr_combo.append("(")
-                    dfs(symbol + 1, index + 1)
-                    curr_combo.pop()
-                if symbol > 0:
-                    curr_combo.append(")")
-                    dfs(symbol - 1, index + 1)
-                    curr_combo.pop()
-        dfs(0, 0)
-        return all_combo
+                if lc < n:
+                    dfs(lc + 1, rc, n, curr_string + "(")
+                if rc < n and lc > rc:
+                    dfs(lc, rc + 1, n, curr_string + ")")
+        dfs(0, 0, n, "")       
+        return ans
