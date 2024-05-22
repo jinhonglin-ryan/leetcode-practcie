@@ -28,26 +28,35 @@ class Solution(object):
 #         return False
         
         # Method 2: 先使用二分查找确定目标值所在的行，然后在该行内再次使用二分查找确定目标值所在的列
-        left, right = 0, len(matrix) - 1
+        left = 0
+        right = len(matrix) - 1
+        
         while left <= right:
             mid = left + (right - left) // 2
-            if matrix[mid][0] <= target <= matrix[mid][-1]:  # target is within the range of this row
-                # Step 2: Binary search within the found row
-                left_2, right_2 = 0, len(matrix[0]) - 1
+            
+            if matrix[mid][0] <= target <= matrix[mid][-1]:
+                left_2 = 0
+                right_2 = len(matrix[0]) - 1 
+                
                 while left_2 <= right_2:
                     mid_2 = left_2 + (right_2 - left_2) // 2
+                    
                     if matrix[mid][mid_2] == target:
                         return True
-                    elif matrix[mid][mid_2] < target:
-                        left_2 = mid_2 + 1
-                    else:
+                    elif matrix[mid][mid_2] > target:
                         right_2 = mid_2 - 1
+                        continue
+                    else:
+                        left_2 = mid_2 + 1 
+                        continue
                 return False
+                        
             elif matrix[mid][0] > target:
                 right = mid - 1
+                continue
             else:
                 left = mid + 1
+                continue
         return False
-
         
 
