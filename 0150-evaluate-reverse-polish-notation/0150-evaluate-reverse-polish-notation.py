@@ -19,15 +19,12 @@ class Solution(object):
                 elif token == '*':
                     result = num_2 * num_1
                 elif token == '/':
-                    # 整数除法要向零截断
-                    if num_2 * num_1 >= 0:
-                        result = int(num_2 / num_1)
-                    else:
-                        result = -(-num_2 / num_1)
+                    # 使用 // 运算符实现向零截断
+                    result = int(num_2 / num_1) if num_2 * num_1 >= 0 else -(-num_2 // num_1)
 
                 stack.append(result)
             else:
-                
+                # 操作数压入栈中
                 stack.append(int(token))
 
         return stack.pop()
