@@ -14,10 +14,10 @@ class Solution(object):
         curr = head
         
         while curr is not None:
-            next_tmp = curr.next
+            tmp = curr.next 
             curr.next = prev
             prev = curr
-            curr = next_tmp
+            curr = tmp
         return prev 
         
         
