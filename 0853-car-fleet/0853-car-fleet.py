@@ -11,11 +11,10 @@ class Solution(object):
         id.sort(key=lambda x: position[x])
         
         res = n
-        eps = 1e-6
         last = 0.0
         for i in range(n - 1, -1, -1):
             t = (target - position[id[i]]) / float(speed[id[i]])
-            if t < last + eps:
+            if t <= last:
                 res -= 1
             else:
                 last = t
