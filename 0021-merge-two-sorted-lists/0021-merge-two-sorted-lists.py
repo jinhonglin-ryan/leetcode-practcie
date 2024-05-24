@@ -11,7 +11,7 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         
-        dummy = ListNode(-1)
+        dummy = ListNode()
         curr = dummy
         
         while list1 and list2:
