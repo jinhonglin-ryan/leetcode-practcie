@@ -17,6 +17,7 @@ class Solution(object):
         while list1 and list2:
             if list1.val <= list2.val:
                 curr.next = list1
+                # 移动list到下一个为添加作准备  
                 list1 = list1.next
             else:
                 curr.next = list2
