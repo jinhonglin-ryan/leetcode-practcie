@@ -24,31 +24,31 @@ class Solution(object):
         # 第一次二分：找到旋转点的索引 
         left, right = 0, n - 1
         while left < right:
-            mid = (left + right) // 2
-            if nums[mid] > nums[right]:
-                left = mid + 1
+            mid = (left + right + 1) // 2
+            if nums[mid] >= nums[0]:
+                left = mid
             else:
-                right = mid
+                right = mid - 1
         
         # 旋转点的索引
         pivot = left
         
-        # 第二次二分：根据target值确定搜索区间
-        left, right = 0, n - 1
-        if target >= nums[pivot] and target <= nums[right]:
-            left = pivot
+        if target >= nums[0]:
+            left = 0
         else:
-            right = pivot - 1
+            left = right + 1
+            right = n - 1
         
+        # 第二次二分：根据target值确定搜索区间
         # 标准二分查找
-        while left <= right:
+        while left < right:
             mid = (left + right) // 2
-            if nums[mid] == target:
-                return mid
-            elif nums[mid] < target:
-                left = mid + 1
+            if nums[mid] >= target:
+                right = mid
             else:
-                right = mid - 1
+                left = mid + 1 
+        if nums[right] == target:
+            return right
         
         return -1
         
