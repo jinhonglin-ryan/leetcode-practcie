@@ -45,26 +45,49 @@ class Solution(object):
 #         curr.next = tmp
 #         return head
     
-        # Method 2：yxc 方法，类似，但是更精简
-        k = 0 
+#         # Method 2：yxc 方法，类似，但是更精简
+#         k = 0 
+#         # dummy节点 处理删除头节点的特殊情况 
+#         dummy = ListNode()
+#         dummy.next = head
+#         curr = head
+#         while curr is not None:
+#             k += 1
+#             curr = curr.next
+        
+#         # 要删除倒数第n个点，我们需要找到倒数第n+1个点
+#         # 意思就是从第一个数开始，需要移动k - n - 1步 才能到倒数n+1个点
+#         # 所以从dummy开始，需要多移动一步，也就是k-n步 
+#         # 找到倒数第n+1个点之后，删除第n个点就很方便了
+#         # k = 5, n = 2
+#         index = 0
+#         temp = dummy 
+#         for index in range(0, k - n):
+#             temp = temp.next
+#         temp.next = temp.next.next
+        
+#         return dummy.next 
+    
+        # Method 3: 快慢双指针
+        # 先将
         dummy = ListNode()
         dummy.next = head
-        curr = head
-        while curr is not None:
-            k += 1
-            curr = curr.next
         
-        # 要删除倒数第n个点，我们需要找到倒数第n+1个点
-        # 意思就是从第一个数开始，需要移动k - n - 1步 才能到倒数n+1个点
-        # 找到倒数第n+1个点之后，删除第n个点就很方便了
-        # k = 5, n = 2
-        index = 0
-        temp = dummy 
-        for index in range(0, k - n):
-            temp = temp.next
-        temp.next = temp.next.next
+        fast = head
+        slow = dummy
+        while n:
+            fast = fast.next
+            n -= 1
         
+        while fast:
+            fast = fast.next
+            slow = slow.next
+        
+        slow.next = slow.next.next
         return dummy.next 
+            
+        
+        
             
         
         
