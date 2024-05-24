@@ -29,9 +29,11 @@ class Solution(object):
                 left = mid
             else:
                 right = mid - 1
-        
+                
+        # 在上面这个二分后 旋转点的index确定了，就是left = right 
+        # 如果target 大于等于nums[0]的值，我们在0到旋转点这里找target
+        # else 我们在0到旋转点+1到len(nums) - 1找
         # 旋转点的索引
-        pivot = left
         
         if target >= nums[0]:
             left = 0
@@ -39,7 +41,7 @@ class Solution(object):
             left = right + 1
             right = n - 1
         
-        # 第二次二分：根据target值确定搜索区间
+        # 第二次二分：根据上面确定的left与right找target
         # 标准二分查找
         while left < right:
             mid = (left + right) // 2
@@ -47,12 +49,13 @@ class Solution(object):
                 right = mid
             else:
                 left = mid + 1 
+                
         if nums[right] == target:
             return right
         
         return -1
         
-        
+        # Method 2
 #         left = 0
 #         right = len(nums) - 1
         
