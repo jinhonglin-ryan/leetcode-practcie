@@ -14,11 +14,13 @@ class Solution(object):
         curr = head
         
         while curr is not None:
-            next_node = curr.next
+            next_temp = curr.next
             curr.next = prev
             prev = curr
-            curr = next_node
+            curr = next_temp
+            
         return prev 
+            
         
         
          
