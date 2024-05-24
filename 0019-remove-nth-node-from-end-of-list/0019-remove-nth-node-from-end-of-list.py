@@ -69,7 +69,12 @@ class Solution(object):
 #         return dummy.next 
     
         # Method 3: 快慢双指针
-        # 先将
+        # 先将快指针往前走n步
+        # 然后快慢指针一起走，直到快指针走到null了之后停止
+        # 这时候慢指针指向要被删除节点的前一个node
+        # 然后正常删除操作即可
+        # 也用dummy来handle删除头节点的情况
+        
         dummy = ListNode()
         dummy.next = head
         
