@@ -6,26 +6,16 @@ class Solution(object):
             time += (pile + speed - 1) // speed
         return time <= hours
     
-   
-    
-    
     def minEatingSpeed(self, piles, h):
-        """
-        :type piles: List[int]
-        :type h: int
-        :rtype: int
-        """
-        
-        left, right = 1, max(piles)
+        left = 1
+        right = max(piles)
         
         while left < right:
             mid = left + (right - left) // 2
             
             if not self.can_eat(piles, mid, h):
-                left = mid + 1 
+                left = mid + 1
             else:
                 right = mid
-                
-        return left
-         
         
+        return left
