@@ -26,16 +26,28 @@ class Solution(object):
     
         
         # Method 2: 快慢双指针
-        if not head or not head.next:
-            return False
+#         if not head or not head.next:
+#             return False
         
-        slow = head
-        fast = head.next
+#         slow = head
+#         fast = head.next
         
-        while slow != fast:
-            if not fast or not fast.next:
-                return False
-            slow = slow.next
-            fast = fast.next.next
+#         while slow != fast:
+#             if not fast or not fast.next:
+#                 return False
+#             slow = slow.next
+#             fast = fast.next.next
         
-        return True
+#         return True
+    
+        # Method 3: 哈希表
+        node_to_count = {}
+        
+        curr = head
+        while curr:
+            if curr in node_to_count:
+                return True
+            else:
+                node_to_count[curr] = 1
+            curr = curr.next
+        return False 
