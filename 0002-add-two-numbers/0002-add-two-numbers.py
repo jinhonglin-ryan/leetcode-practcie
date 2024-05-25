@@ -35,5 +35,6 @@ class Solution(object):
             curr = curr.next
             
         return head.next 
-            
+       
+    
         
