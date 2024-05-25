@@ -41,7 +41,7 @@ class Solution(object):
         # Method 2: Iterative
         lca = root
         
-        while lca:
+        while True:
             if lca.val > p.val and lca.val > q.val:
                 lca = lca.left
             elif lca.val < p.val and lca.val < q.val:
