@@ -17,12 +17,13 @@ class Solution(object):
         slow = head
         fast = head.next 
         
-        while slow != fast:
-            if fast is None or fast.next is None:
-                return False
-            
+        while fast is not None:
             slow = slow.next
-            fast = fast.next.next
-        
-        return True
+            fast = fast.next
+            if fast is None:
+                return False
+            fast = fast.next
+            if fast == slow:
+                return True
+        return False
             
