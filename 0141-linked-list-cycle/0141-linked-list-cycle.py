@@ -11,13 +11,18 @@ class Solution(object):
         :rtype: bool
         """
         
-        all_set = set()
+        if not head or not head.next:
+            return False
         
-        curr = head 
+        slow = head
+        fast = head.next 
         
-        while curr:
-            if curr in all_set:
-                return True
-            all_set.add(curr)
-            curr = curr.next
-        return False 
+        while slow != fast:
+            if fast is None or fast.next is None:
+                return False
+            
+            slow = slow.next
+            fast = fast.next.next
+        
+        return True
+            
