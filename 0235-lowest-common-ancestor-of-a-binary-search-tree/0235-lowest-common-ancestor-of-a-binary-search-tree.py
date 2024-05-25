@@ -14,18 +14,27 @@ class Solution(object):
         :rtype: TreeNode
         """
         
-        ancestor = root
-        
-        while True:
-            if ancestor.val > p.val and ancestor.val > q.val:
-                ancestor = ancestor.left
-            elif ancestor.val < p.val and ancestor.val < q.val:
-                ancestor = ancestor.right
-            else:
-                break
-        return ancestor
-                    
-            
-        
-            
-        
+        if root is None or root == p or root == q:
+            return root
+    
+        # 递归在左子树搜索
+        left = self.lowestCommonAncestor(root.left, p, q) if root.left else None
+        # 递归在右子树搜索
+        right = self.lowestCommonAncestor(root.right, p, q) if root.right else None
+
+        # 如果在左右子树中都找到了目标节点，则当前root是LCA
+        if left and right:
+            return root
+
+        # 如果只在左子树找到，则返回左子树的结果
+        if left:
+            return left
+
+        # 如果只在右子树找到，则返回右子树的结果
+        if right:
+            return right
+
+        # 如果两边都没有，则返回None
+        return None
+
+
