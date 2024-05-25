@@ -11,9 +11,9 @@ class Solution(object):
         :rtype: ListNode
         """
         
+        dummy = ListNode()
+        curr = dummy
         carry = 0
-        head = ListNode()
-        curr = head
         
         while l1 or l2 or carry:
             if l1:
@@ -28,13 +28,11 @@ class Solution(object):
             else:
                 num_2 = 0
             
-            sum_curr = num_1 + num_2 + carry
-            carry = sum_curr // 10 
+            sum_tmp = num_1 + num_2 + carry
+            carry = sum_tmp // 10
             
-            curr.next = ListNode(sum_curr % 10)
+            curr.next = ListNode(sum_tmp % 10)
             curr = curr.next
             
-        return head.next 
-       
+        return dummy.next
     
-        
