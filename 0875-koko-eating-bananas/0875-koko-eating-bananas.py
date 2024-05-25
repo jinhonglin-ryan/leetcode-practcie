@@ -1,4 +1,8 @@
 class Solution(object):
+    # 比如k是eating speed, 要求k的最小值在这个表达式里:
+    # summation of ceil(pile[i] / k) <= h
+    # 选ceiling因为如果我们需要4.5小时才能吃完一个pile, 在这题的语境下就是5小时
+    # ceiling的算法技巧：a/b的ceiling = (a+b-1)/b 的floor
     
     def check_if_can_eat(self, piles, hour, speed):
         # 检查是否可以在 mid(speed) 速度下在 h 小时内吃完所有香蕉：
