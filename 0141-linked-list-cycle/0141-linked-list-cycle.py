@@ -11,19 +11,15 @@ class Solution(object):
         :rtype: bool
         """
         
-        if not head or not head.next:
-            return False
+        count = {}
         
-        slow = head
-        fast = head.next 
+        curr = head
         
-        while fast is not None:
-            slow = slow.next
-            fast = fast.next
-            if fast is None:
-                return False
-            fast = fast.next
-            if fast == slow:
+        while curr:
+            if curr in count:
                 return True
+            else:
+                count[curr] = 1
+            curr = curr.next 
         return False
             
