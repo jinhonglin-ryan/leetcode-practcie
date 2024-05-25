@@ -24,9 +24,17 @@ class Solution(object):
         # 然后遍历nums， 记录小于等于中间值的count
         # 在一个没有重复的数组中，[1, mid] 中小于等于mid的数应该有mid个
         # 但是如果有重复的情况的话，就需要分类讨论
-        # 如果count <= mid:
-    
-        # 那么
+        # 1. 如果count <= mid: 
+        # 表示在 mid 及其之前的范围内没有多余的数字，也就是说，重复数字不在这个[1, mid]
+        # 所以把left更新为mid + 1
+        # 2. 如果count > mid:
+        # 表示在统计小于等于mid的count后发现这个count大于mid，所以重复数字在[1, mid]
+        # 所以把right 更新为 mid
+        
+        # 例子 n = 5, [1, 2, 3, 4, 5]
+        # nums_1 = [1, 2, 2, 3, 4, 5]
+        # nums_2 = [1, 2, 3, 4, 4, 5]
+        
         
         left = 1
         right = len(nums) - 1 # n + 1 - 1 = n
@@ -48,3 +56,5 @@ class Solution(object):
         
         return left 
         
+        
+        # Method 3: yxc 搞成cycle in a linked list的问题求解
