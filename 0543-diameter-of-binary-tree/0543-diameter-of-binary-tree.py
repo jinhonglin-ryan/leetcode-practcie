@@ -5,17 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
+    
+    # 有两种情况：
+    # 1. 二叉树的直径=左子树高度+右子树高度。（其直径长度所对应的路径是穿过根节点的）
+    # 2. 二叉树的直径=所有子树中最大直径长度。（其直径长度所对应的路径是没有穿过根节点的）
+    # 所以：二叉树的直径=max(左子树高度+右子树高度,所有子树中最大直径长度)。
     def __init__(self):
-        self.ans = 0
-
+        self.diameter = 0
+    
     def dfs(self, node):
-        if not node:
+        if node is None:
             return 0
         left_height = self.dfs(node.left)                     # 左子树高度
         right_height = self.dfs(node.right)                   # 右子树高度
-        self.ans = max(self.ans, left_height + right_height)  # 维护所有路径中的最大直径
+        self.diameter = max(self.diameter, left_height + right_height)  # 维护所有路径中的最大直径
         return max(left_height, right_height) + 1             # 返回该节点的高度 = 左右子树最大高度 + 1
-
+    
     
     def diameterOfBinaryTree(self, root):
         """
@@ -24,5 +29,5 @@ class Solution(object):
         """
         
         self.dfs(root)
-        return self.ans
+        return self.diameter
     
