@@ -7,7 +7,8 @@
 class Solution(object):
     def isBalanced(self, root):
         def check(node):
-            if not node:
+            if node is None:
+                # node is None <=> height is 0 and is balanced 
                 return 0, True
             
             left_height, left_balanced = check(node.left)
