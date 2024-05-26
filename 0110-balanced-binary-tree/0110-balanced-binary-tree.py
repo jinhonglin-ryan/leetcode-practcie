@@ -6,6 +6,7 @@
 #         self.right = right
 class Solution(object):
     def __init__(self):
+        # 假设树开始时是平衡的
         self.balanced = True 
         
         
@@ -16,8 +17,10 @@ class Solution(object):
                 # node is None <=> height is 0
                 return 0
             
+            # 递归计算左右子树高度
             left_height = dfs(node.left)
             right_height = dfs(node.right)
+            
             
             if abs(left_height - right_height) > 1:
                 self.balanced = False
