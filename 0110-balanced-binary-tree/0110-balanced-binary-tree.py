@@ -10,7 +10,6 @@ class Solution(object):
         
         
     def isBalanced(self, root):
-        self.balanced = True
         # dfs 
         def dfs(node):
             if node is None:
