@@ -5,19 +5,26 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def isBalanced(self, root):
-        def check(node):
-            if node is None:
-                # node is None <=> height is 0 and is balanced 
-                return 0, True
-            
-            left_height, left_balanced = check(node.left)
-            right_height, right_balanced = check(node.right)
-            
-            current_height = 1 + max(left_height, right_height)
-            is_balanced = left_balanced and right_balanced and abs(left_height - right_height) <= 1
-            
-            return current_height, is_balanced
+    def __init__(self):
+        self.balanced = True 
         
-        _, balanced = check(root)
-        return balanced
+        
+    def isBalanced(self, root):
+        self.balanced = True
+        # dfs 
+        def dfs(node):
+            if node is None:
+                # node is None <=> height is 0
+                return 0
+            
+            left_height = dfs(node.left)
+            right_height = dfs(node.right)
+            
+            if abs(left_height - right_height) > 1:
+                self.balanced = False
+                
+            return 1 + max(left_height, right_height)
+        
+        
+        dfs(root)
+        return self.balanced
