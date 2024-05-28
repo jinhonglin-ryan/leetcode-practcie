@@ -15,8 +15,8 @@ class Solution(object):
             heapq.heappush(max_heap, stone)
         
         while len(max_heap) > 1:  # 只要堆中元素多于一个，就继续处理
-            stone1 = -heapq.heappop(max_heap)  # 取出最大石头，同时取反恢复原值
-            stone2 = -heapq.heappop(max_heap)  # 取出第二大石头，同样取反恢复原值
+            stone1 = -heapq.heappop(max_heap)  # 取出最大石头，取反恢复原值
+            stone2 = -heapq.heappop(max_heap)  # 取出第二大石头，取反恢复原值
             if stone1 != stone2:
                 heapq.heappush(max_heap, -(stone1 - stone2))  # 如果不相等，把差值取反后推回堆中
 
