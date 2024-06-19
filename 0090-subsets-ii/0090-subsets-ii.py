@@ -12,12 +12,14 @@ class Solution(object):
         
         def backtrack(nums, path, used, startIndex):
             ans.append(path[:])
+            
             if startIndex >= len(nums): 
                 return
             
             for i in range(startIndex, len(nums)):
-                if (i > 0) and (nums[i - 1] == nums[i]) and (used[i - 1] == False):
+                if (i > 0) and (nums[i - 1] == nums[i]) and (used[i - 1] == False): # 对树枝不去重，对树层上的去重
                     continue
+                    
                 path.append(nums[i])
                 used[i] = True
                 backtrack(nums, path, used, i + 1)
