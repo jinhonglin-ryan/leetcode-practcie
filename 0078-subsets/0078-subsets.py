@@ -9,9 +9,7 @@ class Solution(object):
         path = []
         def backtrack(nums, index):
             ans.append(path[:])
-            
-            if index >= len(nums):
-                return
+            if index >= len(nums): return
             
             for i in range(index, len(nums)):
                 path.append(nums[i])
