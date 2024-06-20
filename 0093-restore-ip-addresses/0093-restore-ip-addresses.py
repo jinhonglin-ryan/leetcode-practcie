@@ -8,7 +8,7 @@ class Solution(object):
         return self.result
 
     def backtracking(self, s, startIndex, pointNum):
-        if pointNum == 3: # 每次插入一个点之后 check
+        if pointNum == 3: # 当插入最后一个点之后，要check最后一个部分的数是否valid
             if self.isValid(s, startIndex, len(s) - 1):
                 self.result.append(s)
             return
