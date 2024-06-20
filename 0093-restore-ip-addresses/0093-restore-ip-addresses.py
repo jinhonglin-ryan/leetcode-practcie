@@ -28,11 +28,7 @@ class Solution(object):
             return False
         if s[start] == '0' and start != end:  # 排除多位数以0开头的情况
             return False
-        num = 0
-        for i in range(start, end + 1):
-            if not s[i].isdigit():  # 非数字字符
-                return False
-            num = num * 10 + int(s[i])
-            if num > 255:
-                return False
+        curr = s[start:end+1]
+        if not 0 <= int(curr) <= 255:
+            return False
         return True
