@@ -30,9 +30,9 @@ class Solution(object):
                 digit = digits[index]
                 letter = digit_to_letter[digit]
                 for i in range(0, len(letter)):
-                    path += letter[i]
-                    backtrack(path, index + 1)
-                    path = path[0:len(path) - 1]
+                    path += letter[i] # 把当前letter中的第i个字符加入path
+                    backtrack(path, index + 1) # 注意这里是index + 1，因为这里的index只是代表我们当前走到digits的哪一个位置了
+                    path = path[0:len(path) - 1] # 恢复现场
                     
         backtrack(path, 0)
         return ans 
