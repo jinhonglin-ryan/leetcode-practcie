@@ -4,8 +4,6 @@ class Solution(object):
         self.result = []
 
     def restoreIpAddresses(self, s):
-        if len(s) < 4 or len(s) > 12:
-            return self.result
         self.backtracking(s, 0, 0)
         return self.result
 
