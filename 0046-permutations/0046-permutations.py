@@ -13,7 +13,7 @@ class Solution(object):
             if len(path) == len(nums):
                 ans.append(path[:])
                 
-            for i in range(0, len(nums)):
+            for i in range(0, len(nums)): # 对于permutation，重复的比如12和21是都要考虑的。所以每次都从整个nums里面找没有使用过的数字
                 if used[i] == True:
                     continue
                 else:
