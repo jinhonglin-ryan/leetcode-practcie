@@ -25,7 +25,7 @@ class Solution(object):
                     continue
                 path.append(candidates[i])
                 used[i] = True
-                backtrack(candidates, target, path, i + 1)
+                backtrack(candidates, target, path, i + 1) # 因为数字只能被用一次，所以要从当前位置的下一个，也就是i+1个位置开始找
                 used[i] = False
                 path.pop()
                 
