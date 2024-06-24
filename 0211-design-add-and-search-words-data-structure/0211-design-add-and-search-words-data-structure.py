@@ -21,19 +21,20 @@ class Trie(object):
             if index == len(word):
                 return node.isWord 
             
-            # 还没搜完, 取出当前字符，分成两种情况讨论，是. 和 非.
+            # 还没搜完的话, 取出当前字符，分成两种情况讨论，是. 和 非.
             ch = word[index]
+            
             if ch == ".":
                 # 如果当前字符是. , 则对当前node下的所有child Node 进行搜索
                 for child in node.children.values():
-                    if child is not None and dfs(index + 1, child):
+                    if dfs(index + 1, child):
                         return True
             else:
                 # 字符不是., 正常search 
                 if ch not in node.children:
                     return False
                 child = node.children[ch]
-                if child is not None and dfs(index + 1, child):
+                if dfs(index + 1, child):
                     return True
             
             return False
