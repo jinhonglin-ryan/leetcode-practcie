@@ -8,7 +8,11 @@ class Solution(object):
         """
         
         # BFS的思想
-        # 先将所有腐烂橘子存入队列，然后开始bfs
+        # 先将所有腐烂橘子存入队列，这个作为第一层，然后开始bfs
+        # 从队列中取出某层中的每一个腐烂的橘子 然后考虑其四个方向，如果有未腐烂的橘子，就会把他腐烂然后加入队列中，当一层腐烂的橘子全部被取出后，队列中的是下一层腐烂的橘子
+        # 注意返回的是minutes - 1
+        # 因为我们初始化队列后，如果队列中有至少一层腐烂的橘子，这是原先已经被腐烂了的，不需要花时间去腐烂，所以要minutes - 1
+        
         
         queue = deque()
         minutes = 0
@@ -21,7 +25,7 @@ class Solution(object):
                 if grid[r][c] == 2:
                     queue.append((r, c))
                   
-        if queue:
+        if queue: 
             minutes -= 1
             
         dx = [-1, 0, 1, 0]
@@ -29,8 +33,9 @@ class Solution(object):
         
         
         while queue:
-            minutes += 1
-            for _ in range(len(queue)):
+            minutes += 1 
+            size = len(queue)
+            for _ in range(size):
                 x, y = queue.popleft() # 取出一个腐烂的橘子
                 for i in range(4): # 在这个腐烂橘子的四个方向找未腐烂的橘子 
                     a = x + dx[i]
