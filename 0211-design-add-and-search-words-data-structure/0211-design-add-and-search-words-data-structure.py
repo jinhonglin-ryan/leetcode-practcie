@@ -1,39 +1,63 @@
-class Trie:
-
+class Node(object):
     def __init__(self):
         self.children = {}
-        self.isEnd = False
-
+        self.isWord = False
+        
+class Trie(object):
+    def __init__(self):
+        self.root = Node()
+        
     def insert(self, word):
-        cur = self
+        curr = self.root
         for ch in word:
-            if ch not in cur.children:
-                cur.children[ch] = Trie()
-            cur = cur.children[ch]
-        cur.isEnd = True
-
+            if ch not in curr.children:
+                curr.children[ch] = Node()
+            curr = curr.children[ch]
+        curr.isWord = True
+    
     def search(self, word):
-        cur = self
-        for i, ch in enumerate(word):
-            if ch == '.':
-                return any(child.search(word[i + 1:]) for child in cur.children.values())
-            if ch not in cur.children:
-                return False
-            cur = cur.children[ch]
-        return cur.isEnd
-
-
-class WordDictionary:
+        def dfs(index, node):
+            # 如果已经搜完了，return当前node的isWord
+            if index == len(word):
+                return node.isWord 
+            
+            # 还没搜完, 取出当前字符，分成两种情况讨论，是. 和 非.
+            ch = word[index]
+            if ch == ".":
+                # 如果当前字符是. , 则对当前node下的所有child Node 进行搜索
+                for child in node.children.values():
+                    if child is not None and dfs(index + 1, child):
+                        return True
+            else:
+                # 字符不是., 正常search 
+                if ch not in node.children:
+                    return False
+                child = node.children[ch]
+                if child is not None and dfs(index + 1, child):
+                    return True
+            
+            return False
+        return dfs(0, self.root)
+                            
+class WordDictionary(object):
 
     def __init__(self):
         self.trie = Trie()
 
     def addWord(self, word):
+        """
+        :type word: str
+        :rtype: None
+        """
         self.trie.insert(word)
+        
 
     def search(self, word):
+        """
+        :type word: str
+        :rtype: bool
+        """
         return self.trie.search(word)
-
 
 
 # Your WordDictionary object will be instantiated and called as such:
