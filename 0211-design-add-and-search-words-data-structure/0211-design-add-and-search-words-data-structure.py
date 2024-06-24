@@ -33,11 +33,15 @@ class Trie(object):
                 # 字符不是., 正常search 
                 if ch not in node.children:
                     return False
+                
                 child = node.children[ch]
+                
                 if dfs(index + 1, child):
                     return True
-            
+            # 如果上面都没有return True，表示没搜到，return False    
             return False
+        
+        # 从root开始搜
         return dfs(0, self.root)
                             
 class WordDictionary(object):
