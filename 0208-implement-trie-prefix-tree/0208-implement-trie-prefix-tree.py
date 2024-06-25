@@ -1,4 +1,6 @@
 # https://blog.csdn.net/fuxuemingzhu/article/details/79388432
+# root节点不存任何信息
+# 一个节点curr下有一个children map，map from a 字符 to a Node, curr.children[c] 就是到了这个node下
 
 class Node(object):
     def __init__(self):
@@ -15,12 +17,13 @@ class Trie(object):
         :type word: str
         :rtype: None
         """
-        curr = self.root # 从root开始insert
-        for c in word: # 存下每一个字符
-            if c not in curr.children: # 如果当前节点的children字典里还没有该字符
-                curr.children[c] = Node() # 为这个children下的字典对应的字符创建一个Node
-            curr = curr.children[c] # curr move to this new Node
-        curr.isWord = True # 遍历完所有字符in word之后，表示完成了插入，此时curr指向最后一个字符的node，标记当前node isWord为True，表示从root出发走到这个位置是一个Trie中的Word
+        curr = self.root
+        for ch in word:
+            if ch not in curr.children:
+                curr.children[ch] = Node()
+            curr = curr.children[ch]
+        curr.isWord = True
+        
         
     def search(self, word):
         """
@@ -28,13 +31,12 @@ class Trie(object):
         :rtype: bool
         """
         curr = self.root
-        for c in word:
-            if c not in curr.children:
+        for ch in word:
+            if ch not in curr.children:
                 return False
-            curr = curr.children[c]
-        if curr.isWord == False:
-            return False
-        return True
+            curr = curr.children[ch]
+        return curr.isWord
+        
 
     def startsWith(self, prefix):
         """
@@ -42,11 +44,12 @@ class Trie(object):
         :rtype: bool
         """
         curr = self.root
-        for c in prefix:
-            if c not in curr.children:
+        for ch in prefix:
+            if ch not in curr.children:
                 return False
-            curr = curr.children[c]
+            curr = curr.children[ch]
         return True
+        
         
 
 
