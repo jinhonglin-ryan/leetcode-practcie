@@ -10,6 +10,8 @@ class Solution(object):
         n = numCourses
         
         g = defaultdict(list)
+        
+        # 下标为课程，获得的数值为这个课程的入度
         inDegrees = [0 for _ in range(n)]
         
         # 或者可以写 g = dict()
@@ -24,6 +26,7 @@ class Solution(object):
         
         queue = deque()
         
+        # 对于所有课程，把入度为0的加入queue
         for i in range(n):
             if inDegrees[i] == 0:
                 queue.append(i)
