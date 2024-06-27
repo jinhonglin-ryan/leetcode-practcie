@@ -26,8 +26,8 @@ class Solution(object):
                     min_dis = dis[i]
                     min_dis_i = i
                     
-            if min_dis_i == -1:
-                return
+            # if min_dis_i == -1:
+            #     return
             
             # 把最小距离加入ans，和标记当前找到的到集合最小距离的点为访问过
             ans += min_dis
@@ -40,24 +40,7 @@ class Solution(object):
                     
         return ans
             
-            
-                
-        
-        
-        
-        
-                
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+ 
     def minCostConnectPoints(self, points):
         """
         :type points: List[List[int]]
