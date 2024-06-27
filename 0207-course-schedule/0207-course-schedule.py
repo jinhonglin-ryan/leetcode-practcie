@@ -20,13 +20,16 @@ class Solution(object):
         
         # 定义邻接表
         g = defaultdict(list)
+        
+        # 定义入度表
         d = defaultdict(int)
+        
         for e in edges:
             a = e[0]
             b = e[1]
             
-            g[a].append(b)
-            d[b] += 1
+            g[b].append(a)
+            d[a] += 1
         
         # 定义队列, 把所有入度为0的点加入队列
         queue = deque()
