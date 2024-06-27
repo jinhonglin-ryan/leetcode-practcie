@@ -24,4 +24,3 @@ class Solution(object):
                     path.pop()
         backtrack(nums, path)
         return ans 
-                
