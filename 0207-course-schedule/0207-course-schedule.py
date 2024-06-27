@@ -22,29 +22,31 @@ class Solution(object):
         g = defaultdict(list)
         
         # 定义入度表
-        d = defaultdict(int)
+        inDegrees = defaultdict(int)
         
         for e in edges:
             a = e[0]
             b = e[1]
             
             g[b].append(a)
-            d[a] += 1
+            inDegrees[a] += 1
         
         # 定义队列, 把所有入度为0的点加入队列
         queue = deque()
         
         for i in range(n):
-            if d[i] == 0:
+            if inDegrees[i] == 0:
                 queue.append(i)
         
         count = 0 
         while queue:
             t = queue.popleft()
             count += 1
+            # 对于这个已经上了的课，我们把其指向的课的入度-1
             for i in g[t]:
-                d[i] -= 1
-                if d[i] == 0:
+                inDegrees[i] -= 1
+                if inDegrees[i] == 0:
                     queue.append(i)
         
+        # count 表示我们上了多少节课，如果count等于n的话，说明所有需要上的课都上了，因此返回True
         return count == n 
