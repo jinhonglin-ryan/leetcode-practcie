@@ -8,9 +8,9 @@ class Solution(object):
         ans = []
         path = []
         used = [False for _ in nums] # 为了进行去重 需要知道哪些数被用过
-        nums = sorted(nums) # 要进行去重的话，要在树层上去重，需要将nums去重
+        nums = sorted(nums) # 要进行去重的话，要在树层上去重，需要将nums排序
         
-        def backtrack(nums, path, used, startIndex):
+        def backtrack(path, startIndex):
             ans.append(path[:])
             
             if startIndex >= len(nums): 
@@ -24,10 +24,10 @@ class Solution(object):
                     
                 path.append(nums[i])
                 used[i] = True
-                backtrack(nums, path, used, i + 1)
+                backtrack(path, i + 1) # 在subset问题的时候，为了避免重复，我们要从当前位置之后开始找，也就是i+1
                 used[i] = False
                 path.pop()
                 
-        backtrack(nums, path, used, 0)
+        backtrack(path, 0)
         return ans 
         
