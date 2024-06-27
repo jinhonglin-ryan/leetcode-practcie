@@ -20,9 +20,7 @@ class Solution(object):
                 self.backtracking(s, i + 2, pointNum)  # 移至下一个子串的起始位置， i+2 因为要跳过刚加入的点.
                 pointNum -= 1
                 s = s[:i+1] + s[i+2:]  # 移除插入的点
-            else:
-                break  # 当前子串不合法时终止循环
-
+            
     def isValid(self, s, start, end): # 左闭 右闭区间
         if start > end:
             return False
