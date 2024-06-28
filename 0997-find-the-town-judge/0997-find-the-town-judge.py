@@ -5,10 +5,6 @@ class Solution(object):
         :type trust: List[List[int]]
         :rtype: int
         """
-        if trust == [] and n == 1:
-            return 1
-        elif trust == [] and n != 1:
-            return -1 
         
         # 法官存在：该法官出度为0，入度为n-1
         outDegrees = [0 for _ in range(n + 1)]
@@ -24,7 +20,7 @@ class Solution(object):
         
         for i in range(1, n + 1):
             if outDegrees[i] == 0 and inDegrees[i] == n - 1:
-                if res != -1:
+                if res != -1: # 如果已经有多个法官，则不合法，return -1
                     return -1
                 res = i
                 
