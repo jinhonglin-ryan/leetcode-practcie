@@ -7,28 +7,32 @@ class Solution(object):
         :type destination: int
         :rtype: bool
         """
-        if source == destination:
-            return True
-
-        # Create the graph as an adjacency list
+        
         graph = defaultdict(list)
-        for u, v in edges:
-            graph[u].append(v)
-            graph[v].append(u)
-
-        # Perform BFS
-        queue = deque([source])
         visited = set()
-
-        while queue:
-            node = queue.popleft()
+        for a, b in edges:
+            graph[a].append(b)
+            graph[b].append(a)
+            
+        def dfs(node):
             if node == destination:
                 return True
+            
             if node in visited:
-                continue
+                return False
+            
             visited.add(node)
+            
             for neighbor in graph[node]:
-                if neighbor not in visited:
-                    queue.append(neighbor)
+                if dfs(neighbor):
+                    return True
+            return False
+        
+        return dfs(source)
+    
 
-        return False
+
+            
+        
+        
+        
