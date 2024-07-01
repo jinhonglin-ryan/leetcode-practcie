@@ -49,35 +49,30 @@
 #         return self.prim(points)
 
 
-import heapq
-
 class Solution(object):
     def prim(self, graph, start):
-        """
-        通用的Prim算法
-        :param graph: 图的邻接表表示，格式为 {节点: [(邻居, 权重), ...]}
-        :param start: 起始节点
-        :return: 最小生成树的总权重
-        """
-        size = len(graph)
-        visited = set()
-        # 最小堆：将起点推入最小堆，此时起点到这个集合
-        min_heap = [(0, start)]  # (边的权重, 节点)
-        total_weight = 0
         
-        while len(visited) < size:
+        heap = [(0, start)]
+        visited = set()
+        total_weight = 0
+        n = len(graph)
+        
+        while len(visited) < n:
+            weight, target = heapq.heappop(heap)
             
-            weight, u = heapq.heappop(min_heap)
-            if u in visited:
+            if target in visited:
                 continue
             
-            visited.add(u)
+            visited.add(target)
             total_weight += weight
             
-            for v, edge_weight in graph[u]:
-                heapq.heappush(min_heap, (edge_weight, v))
-        
+            for to_node, edge_weight in graph[target]:
+                if to_node not in visited:
+                    heapq.heappush(heap, (edge_weight, to_node))
+                    
         return total_weight
+                    
+            
     
     def minCostConnectPoints(self, points):
         """
@@ -88,16 +83,14 @@ class Solution(object):
         def distance(a, b):
             return abs(a[0] - b[0]) + abs(a[1] - b[1])
         
-        # 构建无向图的邻接表
         graph = defaultdict(list)
-        size = len(points)
-        for i in range(size):
-            for j in range(i + 1, size):
+        
+        for i in range(len(points)):
+            for j in range(i + 1, len(points)):
                 dist = distance(points[i], points[j])
                 graph[i].append((j, dist))
                 graph[j].append((i, dist))
-        
-        # 调用通用的Prim算法
+                
         return self.prim(graph, 0)
 
 
