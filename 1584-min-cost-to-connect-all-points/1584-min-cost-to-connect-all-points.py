@@ -75,8 +75,7 @@ class Solution(object):
             total_weight += weight
             
             for v, edge_weight in graph[u]:
-                if v not in visited:
-                    heapq.heappush(min_heap, (edge_weight, v))
+                heapq.heappush(min_heap, (edge_weight, v))
         
         return total_weight
     
