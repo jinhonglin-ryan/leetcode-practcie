@@ -6,23 +6,27 @@ class Solution(object):
         """
         
         # Method 1: DP
-        # dp[i][j] 表示s在[i:j+1]中是不是一个palindrone
+        # dp[i][j] 表示s在[i:j+1]中是不是一个palindrome
         
         n = len(s)
+        
         if n < 2:
             return s
         
         dp = [[False for _ in range(n)] for _ in range(n)]
         
+        # dp[i][i] 即是同一个字符，必为palindrome，初始化为True
         for i in range(n):
             dp[i][i] = True
         
         max_len = 1
         max_start_pos = 0 
+        
         for j in range(1, n):
             for i in range(j):
                 if s[i] == s[j]:
-                    if (j - 1) - (i + 1) <= 0:
+                    # 当substring只有一位/两位的时候，s[i] = s[j] 直接意味着palindrome
+                    if j - i <= 2:
                         dp[i][j] = True
                     else:
                         dp[i][j] = dp[i + 1][j - 1]
@@ -30,7 +34,8 @@ class Solution(object):
                 if dp[i][j] and j - i + 1 > max_len:
                     max_len = j - i + 1
                     max_start_pos = i
-        return s[max_start_pos:max_start_pos + max_len]         
+                    
+        return s[max_start_pos: max_start_pos + max_len]         
                     
         
 #         # Method 2: 
