@@ -5,6 +5,7 @@ class Solution(object):
         :rtype: int
         """
         # 同第五题的dp解法
+        # 只需要最后遍历一下dp数组，数一下有多少True的项
         
         n = len(s)
         if n == 0:
