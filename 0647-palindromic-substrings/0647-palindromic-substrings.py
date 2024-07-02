@@ -4,6 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+        # 同第五题的dp解法
         
         n = len(s)
         if n == 0:
@@ -17,7 +18,6 @@ class Solution(object):
         for i in range(n):
             dp[i][i] = True
         
-        count = n 
         for j in range(1, n):
             for i in range(j):
                 if s[i] == s[j]:
@@ -25,12 +25,11 @@ class Solution(object):
                         dp[i][j] = True
                     else:
                         dp[i][j] = dp[i + 1][j - 1]
-                else:
-                    dp[i][j] = False 
-                    
+        
+        count = 0
+        for i in range(n):
+            for j in range(n):
                 if dp[i][j]:
                     count += 1
-                        
-        
-        
-        return count
+                    
+        return count 
