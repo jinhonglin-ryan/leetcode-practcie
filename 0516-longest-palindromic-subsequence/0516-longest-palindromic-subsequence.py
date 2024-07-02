@@ -23,6 +23,10 @@ class Solution(object):
                 if s[i] == s[j]:
                     if length == 1:
                         dp[i][j] = 1
+                    elif length == 2:
+                        dp[i][j] = 2
+                    elif length == 3:
+                        dp[i][j] = 3
                     else:
                         dp[i][j] = 2 + dp[i + 1][j - 1]
                 else:
