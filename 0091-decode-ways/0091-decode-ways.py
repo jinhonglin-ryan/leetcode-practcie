@@ -26,6 +26,8 @@ class Solution(object):
         
         dp[0] = 1
         
+        # i 表示 前i个字符构成的字符串可能构成的翻译方案数
+        # 为了获取第i个字符，s的index是i - 1
         for i in range(1, n + 1):
             if s[i - 1] != '0':
                 dp[i] += dp[i - 1]
