@@ -21,7 +21,7 @@ class Solution(object):
                 j = length + i - 1 # length = j - i + 1
                 
                 if s[i] == s[j]:
-                    if j - i <= 0:
+                    if length == 1:
                         dp[i][j] = 1
                     else:
                         dp[i][j] = 2 + dp[i + 1][j - 1]
