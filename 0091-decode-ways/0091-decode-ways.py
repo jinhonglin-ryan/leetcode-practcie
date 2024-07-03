@@ -21,16 +21,24 @@ class Solution(object):
         # 所以12一共有两种解码方式
         
         n = len(s)
-
+        
+        if n == 1:
+            if s[0] == '0':
+                return 0
+            else:
+                return 1
+            
         dp = [0 for _ in range(n + 1)]
         
         dp[0] = 1
         
-        # i 表示 前i个字符构成的字符串可能构成的翻译方案数
-        # 为了获取第i个字符，s的index是i - 1
+        if s[0] == '0':
+            return 0
+        
         for i in range(1, n + 1):
             if s[i - 1] != '0':
                 dp[i] += dp[i - 1]
+            
             if i > 1 and s[i - 2] != '0' and int(s[i - 2: i]) <= 26:
                 dp[i] += dp[i - 2]
                 
