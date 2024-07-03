@@ -33,9 +33,9 @@ class Solution(object):
         # 遍历物品个数
         for i in range(1, n + 1):
             for j in range(1, m + 1): # 遍历背包容量
-                dp[i][j] = dp[i - 1][j]  # 不选第 i 个数
+                dp[i][j] = dp[i - 1][j]  # 不选第 i 个数， 那么是否能够组成和为 j 的子集就取决于前 i-1 个数是否能够组成和为 j 的子集。
 
                 if j >= nums[i - 1]:
-                    dp[i][j] = dp[i][j] or dp[i - 1][j - nums[i - 1]]  # 选第 i 个数
+                    dp[i][j] = dp[i][j] or dp[i - 1][j - nums[i - 1]]  # 选第 i 个数， 如果 dp[i - 1][j - nums[i - 1]] 为 True，说明我们可以通过选择第 i 个数达到和为 j。
 
         return dp[n][m]
