@@ -34,9 +34,13 @@ class Solution(object):
                 # 不选第i个硬币的情况
                 dp[i][j] = dp[i - 1][j]
                 
+                # 选第i个硬币的情况
+                # coins是从0 index开始的
                 if j >= coins[i - 1]:
                     dp[i][j] = min(dp[i][j], dp[i][j - coins[i - 1]] + 1)
-                    
+        
+        # dp[n][m] 表示用前 n 个硬币凑成金额 m 所需的最小硬币数量。
+        # 如果 dp[n][m] 仍然是 float('inf')，这说明即使考虑了所有的硬币，也不能凑成金额 m。因此返回-1
         return dp[n][m] if dp[n][m] != float('inf') else -1
             
 
