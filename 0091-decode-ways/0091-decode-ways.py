@@ -22,6 +22,11 @@ class Solution(object):
         
         n = len(s)
         
+        # some edge cases
+        
+        if s[0] == '0':
+            return 0 
+        
         if n == 1:
             if s[0] == '0':
                 return 0
@@ -32,13 +37,14 @@ class Solution(object):
         
         dp[0] = 1
         
-        if s[0] == '0':
-            return 0
-        
+        # i 表示 前i个字符构成的字符串可能构成的翻译方案数
+        # 为了获取第i个字符，s的index是i - 1
         for i in range(1, n + 1):
+            # 如果第i个字符自己本身不是0，那么可以自己可以解码成一个字母，所以dp[i] += dp[i - 1] 前i个字母的总解码数就是等于前i-1个字母的总解码数
             if s[i - 1] != '0':
                 dp[i] += dp[i - 1]
             
+            # 如果第i个字符的前一个字符不是0，且这两个字符在转成int后在范围内，则这两个字符可以被解码成一个字母，dp[i] += dp[i - 2]
             if i > 1 and s[i - 2] != '0' and int(s[i - 2: i]) <= 26:
                 dp[i] += dp[i - 2]
                 
