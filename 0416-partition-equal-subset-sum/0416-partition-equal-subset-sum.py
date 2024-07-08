@@ -5,14 +5,13 @@ class Solution(object):
         :rtype: bool
         """
         
-        # 01背包问题
-        # Method 1.
+        # 01背包问题 
+        # Method 0. 降维
         # 一半的sum看成是背包总容量 m
         # 每个数字看成物品，体积为数值大小，价值也为数值大小
-        # dp[i][j] 表示前i个物品 在总体积不超过背包容量j的情况下，背包里所能达到的价值
-        # 这里价值跟体积是一样的，所以可以被 paraphrase 成 前i个物品放入背包，在总体积不超过背包容量j的情况下，所能达到的最大体积
-        # 返回结果dp[n][m] == m 就是考虑所有的数字，都尝试放入背包中，在体积不超过target sum m的情况下，看看最大体积能不能达到m
-        # 如果最大体积等于m，说明在n个数中存在一些数，放入背包后，体积不超过背包，且体积等于m，说明有解，这个nums数组中存在partition
+        # dp[j] 定义为容量为j的背包，所背的最大价值为 dp[j]
+        # 返回dp[half_sum] == half_sum 即看看容量为half_sum 的背包，所背的最大价值 是不是half_sum
+        # 因为每个物品（数字）的体积和价值一样，所以这个等价于 把数字放进容量为half_sum的背包里，这些数字能不能凑成half_sum
         
         sum_sum = sum(nums)
         
@@ -22,18 +21,50 @@ class Solution(object):
         m = sum_sum // 2
         n = len(nums)
         
-        dp = [[0 for _ in range(m + 1)] for _ in range(n + 1)]
+        dp = [0 for _ in range(m + 1)]
         
-        # 01背包模板
-        for i in range(1, n + 1):
-            for j in range(m + 1):
+        # 01 背包模板
+        for i in range(n): # 遍历物品
+            for j in range(m, nums[i] - 1, -1): # 倒叙遍历背包容量，保证每个元素只能放一次，要取到num[i]，所以右端点是nums[i] - 1
+                # dp[j] 取「前 i - 1 件物品装入载重为 j 的背包中的最大价值」与「前 i - 1 件物品装入载重为 w - weight[i - 1] 的背包中，再装入第 i 物品所得的最大价值」两者中的最大值
+                dp[j] = max(dp[j], dp[j - nums[i]] + nums[i])
+        
+        return dp[m] == m
                 
-                dp[i][j] = dp[i - 1][j]
+            
+        
+        
+#         # Method 1.
+#         # 一半的sum看成是背包总容量 m
+#         # 每个数字看成物品，体积为数值大小，价值也为数值大小
+#         # dp[i][j] 表示前i个物品 在总体积不超过背包容量j的情况下，背包里所能达到的价值
+#         # 这里价值跟体积是一样的，所以可以被 paraphrase 成 前i个物品放入背包，在总体积不超过背包容量j的情况下，所能达到的最大体积
+#         # 返回结果dp[n][m] == m 就是考虑所有的数字，都尝试放入背包中，在体积不超过target sum m的情况下，看看最大体积能不能达到m
+#         # 如果最大体积等于m，说明在n个数中存在一些数，放入背包后，体积不超过背包，且体积等于m，说明有解，这个nums数组中存在partition
+        
+#         sum_sum = sum(nums)
+        
+#         if sum_sum % 2 != 0:
+#             return False
+        
+#         m = sum_sum // 2
+#         n = len(nums)
+        
+#         dp = [[0 for _ in range(m + 1)] for _ in range(n + 1)]
+        
+#         # 01背包模板
+#         for i in range(1, n + 1):
+#             for j in range(m + 1):
                 
-                if j >= nums[i - 1]:
-                    dp[i][j] = max(dp[i][j], dp[i - 1][j - nums[i - 1]] + nums[i - 1])
+#                 dp[i][j] = dp[i - 1][j]
+                
+#                 if j >= nums[i - 1]:
+#                     dp[i][j] = max(dp[i][j], dp[i - 1][j - nums[i - 1]] + nums[i - 1])
                     
-        return dp[n][m] == m
+#         return dp[n][m] == m
+    
+        
+        
         
         
         
