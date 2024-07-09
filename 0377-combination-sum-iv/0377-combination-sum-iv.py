@@ -22,8 +22,8 @@ class Solution(object):
         
         dp[0] = 1
         
-        for j in range(target + 1):
-            for i in range(len(nums)):
+        for j in range(target + 1): # 外层遍历背包容量 
+            for i in range(len(nums)): # 内层遍历物品
                 if j >= nums[i]:
                     dp[j] += dp[j - nums[i]]
                 
