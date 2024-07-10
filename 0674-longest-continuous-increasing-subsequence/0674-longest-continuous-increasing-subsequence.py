@@ -4,6 +4,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        
+        # DP
+        # 以下标i为结尾的连续递增的子序列⻓度为dp[i]。
+        # 返回dp数组的最大值即可 
+        
         n = len(nums)
         dp = [0 for _ in range(n)]
         
