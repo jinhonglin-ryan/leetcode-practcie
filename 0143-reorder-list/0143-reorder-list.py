@@ -11,22 +11,23 @@ class Solution(object):
         """
         
         linked_list = []
+        
         curr = head
         
         while curr:
             linked_list.append(curr)
-            curr = curr.next 
-        
+            curr = curr.next
+            
+            
         left = 0 
         right = len(linked_list) - 1
         
-        while left < right: 
+        while left < right:
             linked_list[left].next = linked_list[right]
             left += 1
-            if right == left:
+            if left == right:
                 break
             linked_list[right].next = linked_list[left]
             right -= 1
             
-        linked_list[left].next = None
-        
+        linked_list[left].next = None 
