@@ -32,4 +32,5 @@ class Solution(object):
                 # 找出最大值   
                 if dp[i][j] > ans:
                     ans = dp[i][j]
+        # 我们需要找出整个 dp 数组中的最大值，因为最长的公共子数组可能出现在 nums1 和 nums2 的任何位置，而不仅仅是在结尾。
         return ans
