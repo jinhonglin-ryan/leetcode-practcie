@@ -15,19 +15,27 @@ class Solution(object):
         # 且经过k的时候left 是 > 0的，有一定累加油量之后也最多只能走到j，那么如果k作为起始位置，没有油，必然不会超过j
         # 因此下一个起点直接为 j + 1 
         
+        n = len(gas)
+        i = 0
         
-        # 如果总消耗 > 总补充，不可能走完
-        if sum(cost) > sum(gas):
-            return -1
-        
-        start = 0
-        curr_sum = 0
-        
-        # 枚举起点
-        for i in range(len(gas)):
-            curr_sum += gas[i] - cost[i]
-            if curr_sum < 0:
-                curr_sum = 0
-                start = i + 1
+        while i < n: # 枚举起点
+            remaining = 0
+            j = 0
+            while j < n: # 枚举从当前i开始走，最多走多长，环形下标
+                k = (i + j) % n
+                remaining += gas[k] - cost[k]
                 
-        return start 
+                if remaining < 0:
+                    break
+                j += 1
+                
+            # 如果循环是由j走了n步之后退出的，而不是油量<0，说明i可以作为起点   
+            if j == n:
+                return i
+            
+            i = i + j + 1
+        
+        return -1
+                
+            
+            
