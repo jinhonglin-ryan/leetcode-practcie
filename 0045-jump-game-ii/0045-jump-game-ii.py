@@ -27,7 +27,7 @@ class Solution(object):
                 curr_end = next_end # 更新下一次跳跃能到的最远位置
                 
                 # 早停
-                if curr_end == len(nums) - 1:
+                if curr_end >= len(nums) - 1:
                     return count 
             
         return count 
