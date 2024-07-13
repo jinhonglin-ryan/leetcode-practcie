@@ -18,13 +18,14 @@ class Solution(object):
         next_end = 0 # 记录下遍历到的最远距离 
         count = 0 # 记录下用到的最小步骤
         
-        for i in range(len(nums) - 1):
+        for i in range(len(nums)):
             next_end = max(next_end, i + nums[i])
             
             if i == curr_end:
                 count += 1 
                 curr_end = next_end
                 
+                # 早停
                 if curr_end == len(nums) - 1:
                     return count 
             
