@@ -13,17 +13,22 @@ class Solution(object):
         if n == 2:
             return 2 if nums[0] != nums[1] else 1
         
-        # 默认数组最右边有一个摆动
-        res = 1
-        # 相当于在起点前延伸一个pre_diff
-        pre_diff = 0
+        # 删除相邻的重复元素
+        new_nums = [nums[0]]
+        for i in range(1, n):
+            if nums[i] != nums[i - 1]:
+                new_nums.append(nums[i])
         
-        for i in range(n - 1):
-            next_diff = nums[i + 1] - nums[i]
-            
-            if (pre_diff >= 0 and next_diff < 0) or (pre_diff <= 0 and next_diff > 0):
-                res += 1 
-                pre_diff = next_diff
+        if len(new_nums) == 1:
+            return 1
+        
+        res = 2
+        for i in range(1, len(new_nums) - 1):
+            a = new_nums[i - 1]
+            b = new_nums[i]
+            c = new_nums[i + 1]
+            if (b > a and b > c) or (b < a and b < c):
+                res += 1
                 
         return res
             
