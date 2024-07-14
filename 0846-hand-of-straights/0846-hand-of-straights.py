@@ -13,6 +13,7 @@ class Solution(object):
                 
         
         for num in sorted(num_freq.keys()):
+            # 从小到大遍历 hand中的非重复数字，每次取最小的最为起点，那么如果最小数有freq次出现，则理应有freq个以这个最小数开头的subgroup, 如果没有的话，就不成立，return False
             freq = num_freq[num]
             
             if freq == 0:
@@ -25,10 +26,6 @@ class Solution(object):
                     return False
                 
         return True
-            
-            
-                
-        
                 
         
         
