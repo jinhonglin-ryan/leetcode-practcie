@@ -7,6 +7,7 @@ class Solution(object):
         
         intervals.sort(key=lambda x: (x[0], x[1]))
         
+        # 第一个边界自动会进入else语句，count+=1变成0，开始计数
         count = -1
         
         end = intervals[0][1]
