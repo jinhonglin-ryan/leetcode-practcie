@@ -11,9 +11,9 @@ class Solution(object):
         count = -1
         
         for a, b in intervals:
-            if a >= end:
+            if a >= end: # 如果当前区间的起点在前一个区间的末尾之后，无重叠情况，则直接更新end为当前区间结尾位置
                 end = b
-            else:
+            else: # 重叠的情况，直接count += 1 表示需要remove掉这个重叠区间 
                 count += 1
                 
         return count 
