@@ -23,7 +23,7 @@ class DetectSquares(object):
         :rtype: int
         """
         x, y = point
-        total_squares = 0
+        res = 0
         
         for v in self.rows[x]:
             if v == y:
@@ -33,18 +33,24 @@ class DetectSquares(object):
             side_length = abs(y - v)
 
             # 计算以当前点作为正方形一顶点，是否存在其余三个顶点
-            total_squares += (
+            
+            # 情况1：
+            # x,y 和 x,v构成的边作为正方形的左边边
+            res += (
                 self.points_count[x][v] * 
                 self.points_count[x + side_length][y] * 
                 self.points_count[x + side_length][v]
             )
-            total_squares += (
+            
+            # 情况2
+            # x,y 和 x,v构成的边作为正方形的右边边
+            res += (
                 self.points_count[x][v] * 
                 self.points_count[x - side_length][y] * 
                 self.points_count[x - side_length][v]
             )
 
-        return total_squares
+        return res
         
         
         
