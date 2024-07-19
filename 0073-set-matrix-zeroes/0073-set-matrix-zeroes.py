@@ -5,7 +5,10 @@ class Solution(object):
         :rtype: None Do not return anything, modify matrix in-place instead.
         """
         
-        todo = []
+        cols = set()
+        rows = set()
+        
+        
         
         n = len(matrix)
         m = len(matrix[0])
@@ -13,19 +16,20 @@ class Solution(object):
         for i in range(n):
             for j in range(m):
                 if matrix[i][j] == 0:
-                    todo.append([i, j])
+                    rows.add(i)
+                    cols.add(j)
             
-        todo = deque(todo)
-        while todo:
-            a, b = todo.popleft()
+        while rows:
+            i = rows.pop()
             
             for j in range(m):
-                if matrix[a][j] != 0:
-                    matrix[a][j] = 0
-                    
+                matrix[i][j] = 0
+                
+        while cols:
+            j = cols.pop()
+            
             for i in range(n):
-                if matrix[i][b] != 0:
-                    matrix[i][b] = 0
+                matrix[i][j] = 0
                     
         
             
