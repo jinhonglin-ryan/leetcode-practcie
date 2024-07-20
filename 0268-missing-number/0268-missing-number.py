@@ -4,12 +4,18 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        
+        # Method 1. yxc
+        # 0 - n 个数的和是 (0 + n) * (n + 1) / 2
+        # 减去nums的和，就是缺失的数
         n = len(nums)
-        nums = sorted(nums)
+        return n * (n + 1) // 2 - sum(nums)
         
-        for i in range(n):
-            if nums[i] != i:
-                return i
+#         # Method 2. 排序
+#         n = len(nums)
+#         nums = sorted(nums)
+        
+#         for i in range(n):
+#             if nums[i] != i:
+#                 return i
             
-        return i + 1
+#         return i + 1
