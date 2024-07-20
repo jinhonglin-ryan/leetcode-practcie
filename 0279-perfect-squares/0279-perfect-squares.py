@@ -16,11 +16,13 @@ class Solution(object):
         
         dp = [float('inf') for _ in range(n + 1)]
         
+        # 组成 0 不需要任何平方数
         dp[0] = 0
         
         
         for num in nums:
             for j in range(num, n + 1):
                 dp[j] = min(dp[j], dp[j - num] + 1)
-                
+        
+        # 如果dp[n] = 初始化到值，表示没有找到任何组合，返回-1
         return dp[n] if dp[n] != float('inf') else -1 
