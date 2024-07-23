@@ -14,7 +14,9 @@ class Solution(object):
         MASK = 0xFFFFFFFF # 32 位无符号整数的最大值，二进制全是1
         
         # 获得 a和b的lower 32 bits，把a和b看作32位无符号整数，最后对a的范围进行判断，返回成 有符号整数
-
+        a &= MASK
+        b &= MASK
+        
         # 当 b 不为 0 时，表示还有进位需要处理。
         while b != 0:
             # 计算进位，并将进位左移一位，同时使用 MASK 限制在 32 位内。
