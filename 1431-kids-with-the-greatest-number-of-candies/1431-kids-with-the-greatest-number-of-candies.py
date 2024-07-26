@@ -7,10 +7,10 @@ class Solution(object):
         """
         
         res = [False for _ in range(len(candies))]
+        max_kid = max(candies)
         
         for i in range(len(candies)):
             now = candies[i]
-            max_kid = max(candies)
             after = now + extraCandies
             
             if after >= max_kid:
