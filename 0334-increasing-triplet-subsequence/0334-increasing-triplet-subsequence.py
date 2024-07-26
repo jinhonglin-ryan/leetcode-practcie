@@ -6,6 +6,7 @@ class Solution(object):
         """
         a = float('inf')
         b = float('inf')
+        
         for num in nums:
             if num <= a:
                 a = num
@@ -13,4 +14,6 @@ class Solution(object):
                 b = num
             else:
                 return True
+        
+        # 如果遍历完未找到，则输出 False
         return False
