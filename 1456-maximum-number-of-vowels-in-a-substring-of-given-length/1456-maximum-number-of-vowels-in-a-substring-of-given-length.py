@@ -15,7 +15,8 @@ class Solution(object):
         while right < len(s):
             if s[right] in vowel_set:
                 window_count += 1
-
+                
+            # 如果当前窗口大小正好是k了，开始移动窗口
             if right - left + 1 == k:
                 ans = max(ans, window_count)
                 if s[left] in vowel_set:
