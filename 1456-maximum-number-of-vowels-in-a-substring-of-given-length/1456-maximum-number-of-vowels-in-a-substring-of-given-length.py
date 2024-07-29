@@ -16,7 +16,7 @@ class Solution(object):
             if s[right] in vowel_set:
                 window_count += 1
 
-            if right - left + 1 >= k:
+            if right - left + 1 == k:
                 ans = max(ans, window_count)
                 if s[left] in vowel_set:
                     window_count -= 1
