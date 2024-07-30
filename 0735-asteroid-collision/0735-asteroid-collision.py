@@ -23,7 +23,9 @@ class Solution(object):
                 # 如果栈顶元素正好跟当前元素的移动方向相反，且质量一样，栈顶元素也没了
                 elif stack[-1] == -x:
                     stack.pop()
-                    
+                
+                # 如果以上情况都没有发生，则表示栈顶元素质量大于当前元素，因此栈顶元素保留
+                
         return stack 
             
                 
