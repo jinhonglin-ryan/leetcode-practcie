@@ -10,12 +10,14 @@ class Solution(object):
         for ch in s:
             if ch != ']':
                 stack.append(ch)
+                
             else:
                 # 处理括号内的字符串
                 tmp = []
                 while stack and stack[-1] != '[':
                     tmp.append(stack.pop())
-                tmp.reverse()
+                # 翻转一下
+                tmp = tmp[::-1]
                 
                 # 弹出 '['
                 stack.pop()
@@ -24,10 +26,14 @@ class Solution(object):
                 num = []
                 while stack and stack[-1].isdigit():
                     num.append(stack.pop())
-                num.reverse()
-                repeat_count = int("".join(num))
+                
+                # 翻转一下
+                num = num[::-1]
+                
+                # 总共需要重复的次数
+                n = int("".join(num))
                 
                 # 将解码后的字符串重复并压入栈中
-                stack.extend(tmp * repeat_count)
+                stack.extend(tmp * n)
         
         return "".join(stack)
