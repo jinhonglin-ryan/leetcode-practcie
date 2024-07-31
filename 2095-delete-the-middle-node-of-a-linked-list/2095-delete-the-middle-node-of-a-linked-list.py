@@ -11,26 +11,38 @@ class Solution(object):
         """
         
         # Method 2. 快慢指针做法，快指针每次走两步，慢指针每次走一步
-        
-        # Method 1. 暴力做法
-        length = 0
-        curr = head
-        while curr:
-            length += 1
-            curr = curr.next
-        
-        if length == 1:
+        if head.next == None:
             return None
         
-        mid_prev = (length // 2) - 1
+        fast = head
+        slow = head
+        slow_prev = None
+        while fast and fast.next:
+            fast = fast.next.next
+            slow_prev = slow
+            slow = slow.next
         
-        cnt = 0
-        curr = head
-        
-        while cnt < mid_prev:
-            curr = curr.next
-            cnt += 1 
-            
-        curr.next = curr.next.next
-        
+        slow_prev.next = slow.next
         return head 
+#         # Method 1. 暴力做法
+#         length = 0
+#         curr = head
+#         while curr:
+#             length += 1
+#             curr = curr.next
+        
+#         if length == 1:
+#             return None
+        
+#         mid_prev = (length // 2) - 1
+        
+#         cnt = 0
+#         curr = head
+        
+#         while cnt < mid_prev:
+#             curr = curr.next
+#             cnt += 1 
+            
+#         curr.next = curr.next.next
+        
+#         return head 
