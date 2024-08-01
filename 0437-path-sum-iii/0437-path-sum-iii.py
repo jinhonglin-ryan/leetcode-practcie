@@ -9,23 +9,29 @@ class Solution(object):
         if root is None:
             return 0
         
-        # 计算以当前节点为起点的所有路径和等于targetSum的路径数
+        # 定义DFS函数，计算以当前节点为起点，路径和等于targetSum的路径数
         def dfs(node, targetSum):
             if node is None:
                 return 0
             current = node.val
             totalPaths = 0
+            # 如果当前节点值等于targetSum，则找到一条满足条件的路径
             if current == targetSum:
                 totalPaths += 1
+            # 递归计算左子树和右子树中的路径数，并更新targetSum
             totalPaths += dfs(node.left, targetSum - current)
             totalPaths += dfs(node.right, targetSum - current)
+            
             return totalPaths
         
-        # 计算当前节点、左子树和右子树中的路径数
+        # 计算以当前节点为起点的所有路径和等于targetSum的路径数
         pathsFromRoot = dfs(root, targetSum)
+        # 递归计算左子树中的满足条件的路径数
         pathsOnLeft = self.pathSum(root.left, targetSum)
+        # 递归计算右子树中的满足条件的路径数
         pathsOnRight = self.pathSum(root.right, targetSum)
         
+        # 返回总的满足条件的路径数
         return pathsFromRoot + pathsOnLeft + pathsOnRight
         
     
