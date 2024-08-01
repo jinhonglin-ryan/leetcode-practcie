@@ -21,6 +21,9 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
+        # 中序遍历
+        # 获得升序数组
+        # 找到相邻的最小差值即可
         self.dfs(root)
         min_diff = float('inf')
         for i in range(1, len(self.inorder_list)):
