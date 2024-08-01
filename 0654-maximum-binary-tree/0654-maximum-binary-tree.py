@@ -11,13 +11,13 @@ class Solution(object):
         :rtype: TreeNode
         """
         
-        if not nums:
-            return None
+        if len(nums) == 1:
+            return TreeNode(nums[0])
 
         # 找到数组中的最大值及其索引
-        maxNum = nums[0]
-        maxIndex = 0
-        for i in range(1, len(nums)):
+        maxNum = -float('inf')
+        maxIndex = -1
+        for i in range(len(nums)):
             if nums[i] > maxNum:
                 maxNum = nums[i]
                 maxIndex = i
