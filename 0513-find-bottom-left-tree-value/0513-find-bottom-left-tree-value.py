@@ -13,11 +13,13 @@ class Solution(object):
         if node is None:
             return
         
+        # 如果当前节点是叶子节点，并且当前depth大于最大深度，更新ans
         if node.left is None and node.right is None:
             if depth > self.maxDepth:
                 self.maxDepth = depth
                 self.ans = node.val
-                
+        
+        # 一定要先搜左子树，这样才能保证最左边的节点先被搜到来更新ans 
         self.dfs(node.left, depth + 1)
         self.dfs(node.right, depth + 1)
         
