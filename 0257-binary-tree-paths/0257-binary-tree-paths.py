@@ -7,9 +7,6 @@
 class Solution(object):
     
     def dfs(self, node, path, ans):
-        if node is None:
-            return
-        
         # 将当前node的值转换为字符串并加入path
         path.append(str(node.val))
         
