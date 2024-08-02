@@ -8,16 +8,16 @@ class Solution(object):
     def __init__(self):
         self.cnt = 0
         
-    def dfs(self, node):
-        if node is None:
+    def dfs(self, root):
+        if root is None:
             return
         
-        if node.left:
-            if node.left.left is None and node.left.right is None:
-                self.cnt += node.left.val
+        if root.left:
+            if root.left.left is None and root.left.right is None:
+                self.cnt += root.left.val
                 
-        self.dfs(node.left)
-        self.dfs(node.right)
+        self.dfs(root.left)
+        self.dfs(root.right)
         
         
     def sumOfLeftLeaves(self, root):
@@ -27,4 +27,4 @@ class Solution(object):
         """
         self.dfs(root)
         return self.cnt
-        
+    
