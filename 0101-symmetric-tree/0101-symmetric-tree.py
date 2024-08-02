@@ -6,23 +6,19 @@
 #         self.right = right
 class Solution(object):
     
-    def dfs(self, left, right):
-        if left is None and right is None:
+    def dfs(self, a, b):
+        if a is None and b is None:
             return True
         
-        if left is None or right is None or left.val != right.val:
+        if a is None or b is None or a.val != b.val:
             return False
         
-        return self.dfs(left.left, right.right) and self.dfs(left.right, right.left)
-    
-        
+        return self.dfs(a.left, b.right) and self.dfs(a.right, b.left)
     def isSymmetric(self, root):
         """
         :type root: TreeNode
         :rtype: bool
         """
-        if root is None:
-            return True
         
         return self.dfs(root.left, root.right)
         
