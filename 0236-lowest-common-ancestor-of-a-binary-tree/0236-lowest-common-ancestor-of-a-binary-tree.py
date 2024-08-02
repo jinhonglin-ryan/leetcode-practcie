@@ -14,13 +14,13 @@ class Solution(object):
         :rtype: TreeNode
         """
         
-        if root == p or root == q:
+        if root is None or root == p or root == q:
             return root
     
         # 递归在左子树搜索p or q
-        left = self.lowestCommonAncestor(root.left, p, q) if root.left else None
+        left = self.lowestCommonAncestor(root.left, p, q) 
         # 递归在右子树搜索p or q
-        right = self.lowestCommonAncestor(root.right, p, q) if root.right else None
+        right = self.lowestCommonAncestor(root.right, p, q)
 
         # 如果在左右子树中都找到了目标节点，则当前root是LCA
         if left and right:
