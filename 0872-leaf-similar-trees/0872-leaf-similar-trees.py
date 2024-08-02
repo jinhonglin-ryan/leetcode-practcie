@@ -5,18 +5,17 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    
-    def dfs(self, node, leaves):
+    def dfs(self, node, x):
         if node is None:
             return
         
         if node.left is None and node.right is None:
-            leaves.append(node.val)
+            x.append(node.val)
             
+        self.dfs(node.left, x)
+        self.dfs(node.right, x)
         
-        self.dfs(node.left, leaves)
-        self.dfs(node.right, leaves)
-
+        
         
     def leafSimilar(self, root1, root2):
         """
@@ -24,10 +23,10 @@ class Solution(object):
         :type root2: TreeNode
         :rtype: bool
         """
+        
+        
         a = []
         b = []
         self.dfs(root1, a)
         self.dfs(root2, b)
-        
         return a == b
-        
