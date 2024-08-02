@@ -15,30 +15,32 @@ class Solution(object):
         cnt = 0
         curr = head
         while curr:
-            cnt += 1
             curr = curr.next
-            
-        x = cnt / k
-        remaining = cnt % k
+            cnt += 1
+        
+        num = cnt / k
+        rem = cnt % k
         
         for i in range(k):
             dummy = ListNode()
-            curr = dummy
-            for j in range(x):
-                node = ListNode(head.val)
-                curr.next = node
-                curr = curr.next
-                head = head.next
-                
-            if remaining and head is not None:
-                node = ListNode(head.val)
-                curr.next = node
-                if head is not None:
-                    head = head.next
-                remaining -= 1
-            res.append(dummy.next)
+            each = dummy
             
-        return res
+            for j in range(num):
+                node = ListNode(head.val)
+                each.next = node
+                each = each.next
+                head = head.next
+            
+            if rem and head:
+                nodex = ListNode(head.val)
+                each.next = nodex
+                head = head.next
+                rem -= 1
+            
+            res.append(dummy.next)
+        
+        return res 
+            
     
                     
                 
