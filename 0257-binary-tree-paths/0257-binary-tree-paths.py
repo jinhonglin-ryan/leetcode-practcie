@@ -5,24 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    
-    def dfs(self, node, path, ans):
-        # 将当前node的值转换为字符串并加入path
-        path.append(str(node.val))
+    def dfs(self, node, curr, paths):
+        if node is None:
+            return
         
-        # 如果当前node是叶子节点，将path加入ans
+        curr.append(str(node.val))
+        
         if node.left is None and node.right is None:
-            ans.append("->".join(path))
+            paths.append("->".join(curr))
+            
+        self.dfs(node.left, curr, paths)
+        self.dfs(node.right, curr, paths)
         
-        # 如果当前node不是叶子节点，开始递归
-        if node.left:
-            self.dfs(node.left, path, ans)
+        curr.pop()
         
-        if node.right:
-            self.dfs(node.right, path, ans)
         
-        # 回溯，移除当前节点
-        path.pop()
         
         
     def binaryTreePaths(self, root):
@@ -30,7 +27,10 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[str]
         """
-        path = []
-        ans = []
-        self.dfs(root, path, ans)
-        return ans
+        
+        paths = []
+        curr = []
+        self.dfs(root, curr, paths)
+        
+        return paths
+        
