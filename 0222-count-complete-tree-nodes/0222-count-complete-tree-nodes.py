@@ -16,11 +16,11 @@ class Solution(object):
         
         # 终止条件2：如果当前节点的左子树和右子树是一个满二叉树，可以利用公式把当前节点+左子树和右子树的所有node count算出来
         # 如果当前节点的左子树和右子树是一个满二叉树，则满足当前节点一直往左走的深度 和当前节点一直往右走的深度一样 
-        left = root
-        right = root
+        left = root.left
+        right = root.right
         
-        left_height = 0
-        right_height = 0
+        left_height = 1
+        right_height = 1
         
         while left:
             left = left.left
