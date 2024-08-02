@@ -14,7 +14,7 @@ class Solution(object):
         :rtype: TreeNode
         """
         
-        if root is None or root == p or root == q:
+        if root == p or root == q:
             return root
     
         # 递归在左子树搜索p or q
