@@ -13,11 +13,9 @@ class Solution(object):
         if node.left is None and node.right is None:
             leaves.append(node.val)
             
-        if node.left:
-            self.dfs(node.left, leaves)
-            
-        if node.right:
-            self.dfs(node.right, leaves)
+        
+        self.dfs(node.left, leaves)
+        self.dfs(node.right, leaves)
 
         
     def leafSimilar(self, root1, root2):
