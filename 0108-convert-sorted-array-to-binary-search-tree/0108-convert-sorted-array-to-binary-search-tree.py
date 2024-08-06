@@ -10,13 +10,12 @@ class Solution(object):
             return
         
         mid = start + (end - start) // 2
-        root = TreeNode(nums[mid])
-        root.left = self.build(start, mid - 1, nums)
-        root.right = self.build(mid + 1, end, nums)
+        node = TreeNode(nums[mid])
+        node.left = self.build(start, mid - 1, nums)
+        node.right = self.build(mid + 1, end, nums)
         
-        return root
-        
-        
+        return node
+    
     def sortedArrayToBST(self, nums):
         """
         :type nums: List[int]
