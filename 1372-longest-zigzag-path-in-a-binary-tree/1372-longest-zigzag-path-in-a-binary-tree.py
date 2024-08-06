@@ -6,37 +6,30 @@
 #         self.right = right
 class Solution(object):
     def __init__(self):
-        self.max_length = 0
+        self.max_len = 0
         
-    def dfs(self, node, direc, length):
+    def dfs(self, node, direc, curr_depth):
         if node is None:
             return
         
-        # Update the maximum length
-        self.max_length = max(self.max_length, length)
+        self.max_len = max(self.max_len, curr_depth)
         
-        # If direction is 0, we are going left, so next we go right
-        if direc == 0:
-            if node.left:
-                self.dfs(node.left, 1, length + 1)  # Change direction to right
-            if node.right:
-                self.dfs(node.right, 0, 1)  # Reset length when changing direction
-        else:
-            # If direction is 1, we are going right, so next we go left
-            if node.right:
-                self.dfs(node.right, 0, length + 1)  # Change direction to left
-            if node.left:
-                self.dfs(node.left, 1, 1)  # Reset length when changing direction
-
+        if direc == 'left':
+            self.dfs(node.left, 'left', 1)
+            self.dfs(node.right, 'right', curr_depth + 1)
+            
+        if direc == 'right':
+            self.dfs(node.right, 'right', 1)
+            self.dfs(node.left, 'left', curr_depth + 1)
+    
+        
     def longestZigZag(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
-        if root is None:
-            return 0
         
-        self.dfs(root, 0, 0)
-        self.dfs(root, 1, 0)
+        self.dfs(root.left, 'left', 1)
+        self.dfs(root.right, 'right', 1)
         
-        return self.max_length
+        return self.max_len
