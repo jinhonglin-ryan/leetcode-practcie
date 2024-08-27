@@ -26,8 +26,8 @@ class Solution(object):
             # 如果当前数字大于栈头，需要移除栈中比当前数字小的那些数
             else:
                 while stack and nums2[i] > nums2[stack[-1]]:
-                    # 如果当前栈头在umap中，说明当前nums[i]为当前栈头对应的index在nums2中的下一个大大数，需要更新到ans
-                    if nums2[stack[-1]] in umap:
+                    # 如果当前栈头index在umap中，说明当前nums[i]为当前栈头对应的index在nums2中的下一个大大数，需要更新到ans
+                    if nums2[stack[-1]] in umap: # check if nums2[stack[-1]] is in keys of umap
                         num = nums2[i]
                         index = umap[nums2[stack[-1]]]
                         ans[index] = num
