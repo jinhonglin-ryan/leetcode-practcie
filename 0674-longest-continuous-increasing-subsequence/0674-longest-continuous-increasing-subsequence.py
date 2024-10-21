@@ -10,7 +10,7 @@ class Solution(object):
         # 返回dp数组的最大值即可 
         
         n = len(nums)
-        dp = [0 for _ in range(n)]
+        dp = [1 for _ in range(n)]
         
         dp[0] = 1
         
